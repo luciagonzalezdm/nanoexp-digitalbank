@@ -1,75 +1,54 @@
+import BasePage from '../pages/base';
+
 describe('DigitalBank', () => {
 
     //example test
-    it('Should enter the site', async () => {
-      browser.url('login');
+    it.skip('Should display login page when browsing to the route', async () => {
+      await BasePage.open('login');
+     // expect(browser.title().value()).toMatch('login-page');
     });
 
-    it('Should log in to the demo account', async () => {
-      browser.url('login');
-      
-      let username = await $('[id="username"]');
-      await username.setValue('jsmith@demo.io');
-
-       let password = await $('[id="password"]');
-      await password.setValue('Demo123!');
-
+    it('Should log into demo account when valid data is entered', async () => {
+     
+      await BasePage.open('login');
+      loginPage.logIn('jsmith@demo.io', 'Demo123!');
       let loginButton = $('[id="submit"]');
       await loginButton.click()
-      await browser.pause(5000);
 
     });
 
-    it('Should log in to the demo account using enter key', async () => {
-      browser.url('login');
-      
-      let username = await $('[id="username"]');
-      await username.setValue('jsmith@demo.io');
-
-       let password = await $('[id="password"]');
-      await password.setValue('Demo123!');
+    it.skip('Should log into demo account when using enter key', async () => {
+      await BasePage.open('login');
+      loginPage.logIn('jsmith@demo.io', 'Demo123!');
 
       let loginButton = $('[id="submit"]');
       await loginButton.keys('Enter');
-      await browser.pause(5000);
 
     });
 
-    it('Should deny access and show error message', async () => {
-      browser.url('login');
-      
-      let username = await $('[id="username"]');
-      await username.setValue('luciagonzalez@demo.io');
-
-       let password = await $('[id="password"]');
-      await password.setValue('Demo123!');
+    it.skip('Should deny access when invalid data is entered', async () => {
+      await BasePage.open('login');
+      loginPage.logIn('luciagonzalez@demo.io', 'Demo123!');
 
       let loginButton = $('[id="submit"]');
       await loginButton.click()
 
-      let alert = await $('[class= "badge badge-pill badge-danger"]');
-      console.log(await alert.getProperty('alert'));
-      await browser.pause(5000);
-
+      // let alert = $('[class= "badge badge-pill badge-danger"]');
+      // expect(alert.getText()).to.include.string('Error','Error: no se mostró el mensaje esperado');
+       
     });
 
-    it('Should deny access without filling the fields', async () => {
-      browser.url('login');
+    it.skip('Should deny access when fields are empty', async () => {
+      await BasePage.open('login');
 
       let loginButton = $('[id="submit"]');
       await loginButton.click();
-      await browser.pause(5000);
 
     });
 
-    it('Remember Me button should work', async () => {
-      browser.url('login');
-      
-      let username = await $('[id="username"]');
-      await username.setValue('jsmith@demo.io');
-
-      let password = await $('[id="password"]');
-      await password.setValue('Demo123!');
+    it.skip('Should remember the session when the button is checked', async () => {
+      await BasePage.open('login');
+      loginPage.logIn('jsmith@demo.io', 'Demo123!');
 
       let rememberMe = $('[class="checkbox"]');
       if(await rememberMe.isClickable()){
@@ -78,10 +57,6 @@ describe('DigitalBank', () => {
 
       let loginButton = $('[id="submit"]');
       await loginButton.click();
-
-      await browser.close();
-      browser.url('login');
-      await browser.pause(5000);
 
     }); 
 
