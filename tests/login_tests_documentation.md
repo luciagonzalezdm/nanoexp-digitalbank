@@ -1,9 +1,9 @@
  # Login Tests documentation 
 
 * Project name:  nanoexp-digitalbank
-*Author:* Lucía González
-*Date:* 17/12/2021
-*Version:* 1.0
+* Author: Lucía González
+* Date:  17/12/2021
+* Version: 1.0
 
 
 This project presents an accurate selection of tests applied to the Digital Bank website, which ensure in start the proper functioning of the authentication system.
