@@ -1,62 +1,56 @@
-import BasePage from '../pages/base';
+import LoginPage from '../pages/login.page';
 
 describe('DigitalBank', () => {
 
     //example test
-    it.skip('Should display login page when browsing to the route', async () => {
-      await BasePage.open('login');
-     // expect(browser.title().value()).toMatch('login-page');
+    it('Should display login page when browsing to the route', async () => {
+      await LoginPage.open('login');
+     // expect(browser.title().value()).toMatch('login-logo');
     });
 
     it('Should log into demo account when valid data is entered', async () => {
      
-      await BasePage.open('login');
-      loginPage.logIn('jsmith@demo.io', 'Demo123!');
-      let loginButton = $('[id="submit"]');
-      await loginButton.click()
+      await LoginPage.open('login');
+      await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
+      
+      await LoginPage.clickElement(LoginPage.signInButton);
 
     });
 
-    it.skip('Should log into demo account when using enter key', async () => {
-      await BasePage.open('login');
-      loginPage.logIn('jsmith@demo.io', 'Demo123!');
+    it('Should log into demo account when using enter key', async () => {
+      await LoginPage.open('login');
+      LoginPage.logIn('jsmith@demo.io', 'Demo123!');
 
       let loginButton = $('[id="submit"]');
       await loginButton.keys('Enter');
 
     });
 
-    it.skip('Should deny access when invalid data is entered', async () => {
-      await BasePage.open('login');
-      loginPage.logIn('luciagonzalez@demo.io', 'Demo123!');
+    it('Should deny access when invalid data is entered', async () => {
+      await LoginPage.open('login');
+      LoginPage.logIn('luciagonzalez@demo.io', 'Demo123!');
 
-      let loginButton = $('[id="submit"]');
-      await loginButton.click()
+      await LoginPage.clickElement(LoginPage.signInButton);
 
-      // let alert = $('[class= "badge badge-pill badge-danger"]');
-      // expect(alert.getText()).to.include.string('Error','Error: no se mostró el mensaje esperado');
+      let alert = await $('[class= "badge badge-pill badge-danger"]');
+      expect(alert).toHaveText('Error');
        
     });
 
-    it.skip('Should deny access when fields are empty', async () => {
-      await BasePage.open('login');
+    it('Should deny access when fields are empty', async () => {
+      await LoginPage.open('login');
 
-      let loginButton = $('[id="submit"]');
-      await loginButton.click();
+      await LoginPage.clickElement(LoginPage.signInButton);
 
     });
 
-    it.skip('Should remember the session when the button is checked', async () => {
-      await BasePage.open('login');
-      loginPage.logIn('jsmith@demo.io', 'Demo123!');
+    it('Should remember the session when the button is checked', async () => {
+      await LoginPage.open('login');
+      await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
 
-      let rememberMe = $('[class="checkbox"]');
-      if(await rememberMe.isClickable()){
-        await rememberMe.click();
-      }
+      await LoginPage.clickElement(LoginPage.rememberMe);
 
-      let loginButton = $('[id="submit"]');
-      await loginButton.click();
+      await LoginPage.clickElement(LoginPage.signInButton);
 
     }); 
 
