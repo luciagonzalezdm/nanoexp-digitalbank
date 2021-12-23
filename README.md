@@ -1,7 +1,7 @@
 # nanoexp-digitalbank
 
 
-## **Brief introduccion **
+## Brief introduccion 
 This readme file mentions the requirements and establishes a guide for running those tests.
 Getting Started:
 
@@ -12,10 +12,10 @@ Getting Started:
 3. Node Package Manager (npm)
 
 4. Install Visual Studio Code IDE
-⋅⋅* wdio.config
-⋅⋅* npm install @wdio/cli
-⋅⋅* npm install chai
-⋅⋅* npm install chai-webdriverio
+- wdio.config
+- npm install @wdio/cli
+- npm install chai
+- npm install chai-webdriverio
 
 5. Install Docker Desktop
 
@@ -24,7 +24,9 @@ After cloning digitalbank-gen-one repository, it is necessary to lift the servic
 
  -cd digitalbank-gen-one
 
+
  -cd deploy/docker-compose
+ 
 
  -docker-compose -f docker-compose-postgres.yml up
 
