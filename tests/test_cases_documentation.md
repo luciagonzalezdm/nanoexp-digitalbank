@@ -1,16 +1,8 @@
- # Login Tests documentation 
-
-* Project name:  nanoexp-digitalbank
-* Author: Lucía González
-* Date:  17/12/2021
-* Version: 1.0
-
-
-This project presents an accurate selection of tests applied to the Digital Bank website, which ensure in start the proper functioning of the authentication system.
-
+ # Test Cases documentation 
 
  ## Login Tests
 
+Objectives: ensure in start the proper functioning of the authentication system.
 
 1. Should log in to the demo account.
 The happy way: Verify if a user will be able to login with a valid username and valid password.
@@ -34,3 +26,15 @@ This test should check the remember me box, close the window and reopen it to fi
 Implment forgot password functionality. It is absolutely necessary cause it would solve a frequent problem.
 
 Implement a specific error message when fields are not completed. A client side validation message might be useful.
+
+
+
+## Logout Tests
+
+  Objectives: select test cases that contemplate the accessibility, security and correct functioning of the logout.
+
+  1. Should logout successful when click on the Logout button.
+  The happy way. To log out successfully the button must be accessible and easy to find.
+
+  2. Should come back to login page when click on the back arrow.
+  For security reasons, it is essential that the session be terminated when the back arrow is pressed in the browser.

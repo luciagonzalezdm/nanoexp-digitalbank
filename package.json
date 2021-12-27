@@ -1,6 +1,7 @@
 {
   "name": "nanoexperiencias-digitalbank",
   "version": "1.0.0",
+  "type": "module",
   "description": "automatizacion de pagina",
   "main": "index.js",
   "scripts": {

@@ -1,7 +1,13 @@
 # nanoexp-digitalbank
 
+* Project name:  nanoexp-digitalbank
+* Author: Lucía González
+* Date:  17/12/2021
+* Version: 1.0
+
 
 ## Brief introduccion 
+This project presents an accurate selection of tests applied to the Digital Bank website.
 This readme file mentions the requirements and establishes a guide for running those tests.
 Getting Started:
 
@@ -14,8 +20,6 @@ Getting Started:
 4. Install Visual Studio Code IDE
 - wdio.config
 - npm install @wdio/cli
-- npm install chai
-- npm install chai-webdriverio
 
 5. Install Docker Desktop
 
