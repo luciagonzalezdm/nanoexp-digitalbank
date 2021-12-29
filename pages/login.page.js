@@ -4,12 +4,12 @@ class LoginPage {
     
     get usernameInput () { return $('#username'); }
     get passwordInput () { return $('#password'); }
-    get signInButton () { return $('#submit'); }
+    get logInButton () { return $('#submit'); }
     get rememberMe () { return $('#remember-me'); }
-    get alert () {return $('[class= "badge badge-pill badge-danger"]'); }
+    get failedLoginMessage () {return $('[class= "badge badge-pill badge-danger"]'); }
 
 
-    async logIn(username, password) {
+    async completeFields(username, password) { // acá implementar el método
         await this.usernameInput.waitForClickable({ timeout: PAGE_TIMEOUT });
         await this.usernameInput.setValue(username);
         await this.passwordInput.waitForClickable({ timeout: PAGE_TIMEOUT });
@@ -17,7 +17,11 @@ class LoginPage {
     }
 
     async open(link) {
-        await browser.url(`${link}`);
+        await browser.url(link);
+    }
+
+    async logInWithEnter(){
+        await this.logInButton.keys('Enter');
     }
 
     async clickElement (element) {
