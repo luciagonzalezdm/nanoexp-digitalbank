@@ -19,7 +19,10 @@ class LoginPage {
     async open(link) {
         await browser.url(link);
     }
-
+    
+    async logInWithEnter(){
+        await this.logInButton.keys('Enter');
+    }
 
     async clickElement (element) {
         await element.waitForClickable({ timeout: PAGE_TIMEOUT });

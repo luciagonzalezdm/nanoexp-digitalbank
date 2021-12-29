@@ -19,8 +19,7 @@ describe('DigitalBank', () => {
     it.only('Should log into demo account when using enter key', async () => {
       await LoginPage.open('login');
       await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
-      let loginButton = await $('[id="submit"]');
-      await loginButton.keys('Enter');
+      await LoginPage.logInWithEnter();
       expect(browser).toHaveUrlContaining('home');
 
     });
