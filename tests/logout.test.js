@@ -3,20 +3,23 @@ import LogoutPage from '../pages/logout.page';
 
 describe('Logout Test Cases', () => {
 
-  it.skip('Should logout successful when click on the Logout button', async () => {
+  it('Should logout successful when click on the Logout button', async () => {
     await LoginPage.open('login');
-    await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
-    await LoginPage.clickElement(LoginPage.logInButton);
-    await LoginPage.clickElement(LogoutPage.profileIcon);
-    await LogoutPage.dropdownMenu.selectByIndex(5);
+    await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+    await LoginPage.logInWithSubmitButton();
 
-    expect(browser).toHaveUrlContaining('login');
+    await LoginPage.clickElement(LogoutPage.profileIcon);
+    await LoginPage.clickElement(LogoutPage.logoutButton);
+    expect(LogoutPage.successfulLogoutMessage).toHaveText('Logout completed.');
   });
   
   it.skip('Should come back to login page when click on the back arrow', async () => {
     await LoginPage.open('login');
-    await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
-    await LoginPage.clickElement(LoginPage.logInButton);
+    await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+
+    await LoginPage.logInWithSubmitButton();
     await LoginPage.clickElement(LogoutPage.profileIcon);
     await browser.forward();
     expect(browser).toHaveUrlContaining('login');
