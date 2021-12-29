@@ -16,12 +16,18 @@ class LoginPage {
         await this.passwordInput.setValue(password);
     }
 
+    async completeFields(element, text)
+
     async open(link) {
         await browser.url(link);
     }
     
     async logInWithEnter(){
         await this.logInButton.keys('Enter');
+    }
+
+    async logInWithSubmitButton(){
+        await logInButton.click();
     }
 
     async clickElement (element) {

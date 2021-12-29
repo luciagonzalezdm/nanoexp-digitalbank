@@ -11,7 +11,7 @@ describe('DigitalBank', () => {
      
       await LoginPage.open('login');
       await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
-      await LoginPage.clickElement(LoginPage.logInButton);
+      await LoginPage.logInWithSubmitButton();
       expect(browser).toHaveUrlContaining('home');
 
     });
@@ -27,14 +27,14 @@ describe('DigitalBank', () => {
     it('Should deny access when invalid data is entered', async () => {
       await LoginPage.open('login');
       await LoginPage.completeFields('luciagonzalez@demo.io', 'Demo123!');
-      await LoginPage.clickElement(LoginPage.logInButton);
+      await LoginPage.logInWithSubmitButton();
       expect(LoginPage.failedLoginMessage).toHaveText('Error');
        
     });
 
     it('Should deny access when fields are empty', async () => {
       await LoginPage.open('login');
-      await LoginPage.clickElement(LoginPage.logInButton);
+      await LoginPage.logInWithSubmitButton();
       expect(LoginPage.failedLoginMessage).toHaveText('Error');
     });
 
@@ -42,14 +42,14 @@ describe('DigitalBank', () => {
       await LoginPage.open('login');
       await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
       await LoginPage.clickElement(LoginPage.rememberMe);
-      await LoginPage.clickElement(LoginPage.logInButton);
+      await LoginPage.logInWithSubmitButton();
 
       await browser.newWindow('http://google.com');
      
       await window.close(); // no funciona
       await LoginPage.open('home');
-      let welcomeMsg = await $('[class="active"]') ;
-      expect(welcomeMsg).toHaveText('Welcome Josh');
+      
+      expect(HomePage.welcomeMsg).toHaveText('Welcome Josh');
     }); 
 
  }); 
