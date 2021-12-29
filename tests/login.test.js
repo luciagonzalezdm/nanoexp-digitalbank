@@ -7,7 +7,7 @@ describe('DigitalBank', () => {
       expect(browser).toHaveUrlContaining('login');
     });
 
-    it.only('Should log into demo account when valid data is entered', async () => {
+    it('Should log into demo account when valid data is entered', async () => {
      
       await LoginPage.open('login');
       await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
@@ -19,7 +19,8 @@ describe('DigitalBank', () => {
 
     it('Should log into demo account when using enter key', async () => {
       await LoginPage.open('login');
-      await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
+      await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+      await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
       await LoginPage.logInWithEnter();
       expect(browser).toHaveUrlContaining('home');
 
@@ -27,7 +28,8 @@ describe('DigitalBank', () => {
 
     it('Should deny access when invalid data is entered', async () => {
       await LoginPage.open('login');
-      await LoginPage.completeFields('luciagonzalez@demo.io', 'Demo123!');
+      await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+      await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
       await LoginPage.logInWithSubmitButton();
       expect(LoginPage.failedLoginMessage).toHaveText('Error');
        
@@ -39,18 +41,17 @@ describe('DigitalBank', () => {
       expect(LoginPage.failedLoginMessage).toHaveText('Error');
     });
 
-    it('Should remember the session when the button is checked', async () => {
+    it('Should remember the inputs when the button is checked', async () => {
       await LoginPage.open('login');
-      await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
+      await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+      await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
       await LoginPage.clickElement(LoginPage.rememberMe);
       await LoginPage.logInWithSubmitButton();
 
-      await browser.newWindow('http://google.com');
-     
-      await window.close(); // no funciona
-      await LoginPage.open('home');
+      await browser.newWindow('login');
+      console.log(await LoginPage.usernameInput.getValue());
       
-      expect(HomePage.welcomeMsg).toHaveText('Welcome Josh');
+      expect(LoginPage.usernameInput).toHaveText('jsmith@demo.io');
     }); 
 
  }); 
