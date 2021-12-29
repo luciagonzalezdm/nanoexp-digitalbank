@@ -14,15 +14,21 @@ describe('Logout Test Cases', () => {
     expect(LogoutPage.successfulLogoutMessage).toHaveText('Logout completed.');
   });
   
-  it.skip('Should come back to login page when click on the back arrow', async () => {
+  it('Should close a session when you try to have 2 simultaneously', async () => {
     await LoginPage.open('login');
     await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
     await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
-
     await LoginPage.logInWithSubmitButton();
-    await LoginPage.clickElement(LogoutPage.profileIcon);
-    await browser.forward();
-    expect(browser).toHaveUrlContaining('login');
+
+    await browser.newWindow('login');
+    await LoginPage.completeFields(LoginPage.usernameInput, 'nsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+    await LoginPage.logInWithSubmitButton();
+
+    
+    browser.switchWindow('home');
+    await browser.refresh();
+    expect(LogoutPage.welcomeMessage).toHaveText('Welcome Nicole');
   });
 
 });
