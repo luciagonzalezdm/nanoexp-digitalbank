@@ -1,11 +1,11 @@
 import LoginPage from '../pages/login.page';
 import LogoutPage from '../pages/logout.page';
 
-describe('DigitalBank', () => {
+describe('Logout Test Cases', () => {
 
   it.skip('Should logout successful when click on the Logout button', async () => {
     await LoginPage.open('login');
-    await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
+    await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
     await LoginPage.clickElement(LoginPage.logInButton);
     await LoginPage.clickElement(LogoutPage.profileIcon);
     await LogoutPage.dropdownMenu.selectByIndex(5);
@@ -15,7 +15,7 @@ describe('DigitalBank', () => {
   
   it.skip('Should come back to login page when click on the back arrow', async () => {
     await LoginPage.open('login');
-    await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
+    await LoginPage.completeFields('jsmith@demo.io', 'Demo123!');
     await LoginPage.clickElement(LoginPage.logInButton);
     await LoginPage.clickElement(LogoutPage.profileIcon);
     await browser.forward();
