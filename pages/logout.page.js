@@ -2,9 +2,12 @@ const PAGE_TIMEOUT = 10000;
 
 class LogoutPage {
     
-    get profileIcon () { return $('[class="user-area dropdown show"]'); }
-    get dropdownMenu () { return $('[class="user-menu dropdown-menu show"]'); }
-    get logoutButton () { return $('[class="fa fa-power-off"]'); }
-
+    get profileIcon () { return $('[class="user-avatar rounded-circle"]'); }
+    get logoutButton () { return $('[href="/bank/logout"]'); }
+    get successfulLogoutMessage () { return $('[class="badge badge-pill badge-success"]'); }
+    get myProfileOption () { return $('[href="/bank/user/profile"]'); }
 }
 export default new LogoutPage();
+
+
+

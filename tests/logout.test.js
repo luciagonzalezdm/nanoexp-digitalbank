@@ -1,25 +1,35 @@
 import LoginPage from '../pages/login.page';
 import LogoutPage from '../pages/logout.page';
+import HomePage from '../pages/home.page';
 
-describe('DigitalBank', () => {
+describe('Logout Test Cases', () => {
 
   it('Should logout successful when click on the Logout button', async () => {
     await LoginPage.open('login');
-    await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
-    await LoginPage.clickElement(LoginPage.signInButton);
-    await LoginPage.clickElement(LogoutPage.profileIcon)
-    await LogoutPage.dropdownMenu.selectByIndex(5);
+    await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+    await LoginPage.logInWithSubmitButton();
 
-    expect(browser).toHaveUrlContaining('login');
+    await LoginPage.clickElement(LogoutPage.profileIcon);
+    await LoginPage.clickElement(LogoutPage.logoutButton);
+    expect(LogoutPage.successfulLogoutMessage).toHaveText('Logout completed.');
   });
   
-  it('Should come back to login page when click on the back arrow', async () => {
+  it('Should close a session when you try to have 2 simultaneously', async () => {
     await LoginPage.open('login');
-    await LoginPage.logIn('jsmith@demo.io', 'Demo123!');
-    await LoginPage.clickElement(LoginPage.signInButton);
-    await LoginPage.clickElement(LogoutPage.profileIcon)
-    await browser.back()
-    expect(browser).toHaveUrlContaining('login');
+    await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+    await LoginPage.logInWithSubmitButton();
+
+    await browser.newWindow('login');
+    await LoginPage.completeFields(LoginPage.usernameInput, 'nsmith@demo.io');
+    await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
+    await LoginPage.logInWithSubmitButton();
+
+    
+    browser.switchWindow('home');
+    await browser.refresh();
+    expect(HomePage.welcomeMsg).toHaveText('Welcome Nicole');
   });
 
 });
