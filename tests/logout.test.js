@@ -1,5 +1,6 @@
 import LoginPage from '../pages/login.page';
 import LogoutPage from '../pages/logout.page';
+import HomePage from '../pages/home.page';
 
 describe('Logout Test Cases', () => {
 
@@ -28,7 +29,7 @@ describe('Logout Test Cases', () => {
     
     browser.switchWindow('home');
     await browser.refresh();
-    expect(LogoutPage.welcomeMessage).toHaveText('Welcome Nicole');
+    expect(HomePage.welcomeMsg).toHaveText('Welcome Nicole');
   });
 
 });
