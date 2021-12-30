@@ -18,8 +18,7 @@ Verify if a user cannot login when the fields are blank and submit button is cli
 
 5. The Remember Me button should work
 Check that using the button it is possible to remember the login details in the browser.
-This test should check the remember me box, close the window and reopen it to find the session started.
-
+This test should check the remember me box and open a new login tab in which the inputs are remembered.
 
  ### Observations
 
@@ -36,5 +35,6 @@ Implement a specific error message when fields are not completed. A client side 
   1. Should logout successful when click on the Logout button.
   The happy way. To log out successfully the button must be accessible and easy to find.
 
-  2. Should come back to login page when click on the back arrow.
-  For security reasons, it is essential that the session be terminated when the back arrow is pressed in the browser.
+  2. Should close a session when you try to have 2 simultaneously.
+  It will not be possible to maintain two sessions at the same time, therefore this test must verify that the last session started is keeped.
+  
