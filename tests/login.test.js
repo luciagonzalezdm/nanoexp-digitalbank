@@ -17,7 +17,7 @@ describe('Login Test Cases', () => {
 
     });
 
-    it.only('Should log into demo account when using enter key', async () => {
+    it('Should log into demo account when using enter key', async () => {
       await LoginPage.open('login');
       await LoginPage.completeFields(LoginPage.usernameInput, 'jsmith@demo.io');
       await LoginPage.completeFields(LoginPage.passwordInput, 'Demo123!');
