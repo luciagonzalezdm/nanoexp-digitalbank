@@ -9,19 +9,21 @@ class LoginPage {
     get failedLoginMessage () {return $('[class= "badge badge-pill badge-danger"]'); }
 
 
-    async completeFields(username, password) { // acá implementar el método
-        await this.usernameInput.waitForClickable({ timeout: PAGE_TIMEOUT });
-        await this.usernameInput.setValue(username);
-        await this.passwordInput.waitForClickable({ timeout: PAGE_TIMEOUT });
-        await this.passwordInput.setValue(password);
+    async completeFields(element, text) {
+        await element.waitForClickable({ timeout: PAGE_TIMEOUT });
+        await element.setValue(text);
     }
 
     async open(link) {
         await browser.url(link);
     }
-
+    
     async logInWithEnter(){
         await this.logInButton.keys('Enter');
+    }
+
+    async logInWithSubmitButton(){
+        await this.logInButton.click();
     }
 
     async clickElement (element) {
