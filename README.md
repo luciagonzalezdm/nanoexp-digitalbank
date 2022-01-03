@@ -16,12 +16,9 @@ Getting Started:
 1. Install Java SDK
 2. Install node.js
 3. Node Package Manager (npm)
-
 4. Install Visual Studio Code IDE
-- wdio.config
-- npm install @wdio/cli
-
-5. Install Docker Desktop
+5. Run **npm install** to install the necessary dependencies.
+6. Install Docker Desktop
 
 You should clone this repository and on your desktop
 After cloning digitalbank-gen-one repository, it is necessary to lift the services as follows:

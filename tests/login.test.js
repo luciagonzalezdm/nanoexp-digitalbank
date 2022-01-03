@@ -49,7 +49,6 @@ describe('Login Test Cases', () => {
       await LoginPage.logInWithSubmitButton();
 
       await browser.newWindow('login');
-      console.log(await LoginPage.usernameInput.getValue());
       
       expect(LoginPage.usernameInput).toHaveText('jsmith@demo.io');
     }); 
