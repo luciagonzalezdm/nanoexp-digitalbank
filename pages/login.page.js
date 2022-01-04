@@ -4,31 +4,28 @@ class LoginPage {
     
     get usernameInput () { return $('#username'); }
     get passwordInput () { return $('#password'); }
-    get logInButton () { return $('#submit'); }
     get rememberMe () { return $('#remember-me'); }
+    get logInButton () { return $('#submit'); }
     get failedLoginMessage () {return $('[class= "badge badge-pill badge-danger"]'); }
-
-
-    async completeFields(element, text) {
-        await element.waitForClickable({ timeout: PAGE_TIMEOUT });
-        await element.setValue(text);
-    }
-
-    async open(link) {
-        await browser.url(link);
-    }
     
-    async logInWithEnter(){
+    async completeCredentials(username, password) {
+        await completeFiels(await this.usernameInput, username);
+        await completeFields(await this.passwordInput, password);
+      }
+
+    async logInWithEnter(username, password){
+        this.completeCredentials(username, password);
         await this.logInButton.keys('Enter');
     }
 
-    async logInWithSubmitButton(){
+    async logInWithSubmitButton(username, password){
+        this.completeCredentials(username, password);
         await this.logInButton.click();
     }
 
-    async clickElement (element) {
-        await element.waitForClickable({ timeout: PAGE_TIMEOUT });
-        await element.click();
+    async logInWithRememberMeChecked(){
+        await BasePage.clickElement(rememberMe);
+        await this.logInWithSubmitButton(username, password);
     }
 
 }
