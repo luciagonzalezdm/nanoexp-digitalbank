@@ -1,3 +1,4 @@
+import BasePage from "./base.page";
 const PAGE_TIMEOUT = 10000;
 
 class LoginPage {
@@ -7,10 +8,14 @@ class LoginPage {
     get rememberMe () { return $('#remember-me'); }
     get logInButton () { return $('#submit'); }
     get failedLoginMessage () {return $('[class= "badge badge-pill badge-danger"]'); }
+
+    async navigateToPage(){
+        await BasePage.open('login');
+    }
     
     async completeCredentials(username, password) {
-        await completeFiels(await this.usernameInput, username);
-        await completeFields(await this.passwordInput, password);
+        await BasePage.completeFiels(await this.usernameInput, username);
+        await BasePage.completeFields(await this.passwordInput, password);
       }
 
     async logInWithEnter(username, password){
@@ -23,8 +28,8 @@ class LoginPage {
         await this.logInButton.click();
     }
 
-    async logInWithRememberMeChecked(){
-        await BasePage.clickElement(rememberMe);
+    async logInWithRememberMeChecked(username, password){
+        await BasePage.clickElement(this.rememberMe);
         await this.logInWithSubmitButton(username, password);
     }
 
