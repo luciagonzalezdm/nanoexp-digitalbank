@@ -3,25 +3,29 @@ import LogoutPage from '../pages/logout.page';
 import HomePage from '../pages/home.page';
 import BasePage from '../pages/base.page';
 
+const LOGIN_PAGE = LoginPage;
+const BASE_PAGE = BasePage;
+
+
 describe('Logout Test Cases', () => {
   beforeEach(async function  () {
-    await LoginPage.navigateToPage(); 
+    await LOGIN_PAGE.navigateToPage(); 
   });
 
   it('Should logout successful when click on the Logout button', async () => {
-    await LoginPage.logInWithSubmitButton('jsmith@demo.io', 'Demo123!');
-    await BasePage.clickElement(LogoutPage.profileIcon);
-    await BasePage.clickElement(LogoutPage.logoutButton);
+    await LOGIN_PAGE.logInWithSubmitButton('jsmith@demo.io', 'Demo123!');
+    await BASE_PAGE.clickElement(LogoutPage.profileIcon);
+    await BASE_PAGE.clickElement(LogoutPage.logoutButton);
 
     expect(LogoutPage.successfulLogoutMessage).toHaveText('Logout completed.');
   });
   
   it('Should close a session when you try to have 2 simultaneously', async () => {
-    await LoginPage.logInWithSubmitButton('jsmith@demo.io', 'Demo123!');
+    await LOGIN_PAGE.logInWithSubmitButton('jsmith@demo.io', 'Demo123!');
 
     await browser.newWindow('login');
-    await LoginPage.logInWithSubmitButton('nsmith@demo.io', 'Demo123!');
-    await LoginPage.logInWithSubmitButton();
+    await LOGIN_PAGE.logInWithSubmitButton('nsmith@demo.io', 'Demo123!');
+    await LOGIN_PAGE.logInWithSubmitButton();
 
     
     browser.switchWindow('home');

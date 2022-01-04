@@ -1,5 +1,6 @@
 import BasePage from "./base.page";
 const PAGE_TIMEOUT = 10000;
+const BASE_PAGE = BasePage;
 
 class LoginPage {
     
@@ -10,12 +11,12 @@ class LoginPage {
     get failedLoginMessage () {return $('[class= "badge badge-pill badge-danger"]'); }
 
     async navigateToPage(){
-        await BasePage.open('login');
+        await BASE_PAGE.open('login');
     }
     
     async completeCredentials(username, password) {
-        await BasePage.completeFiels(await this.usernameInput, username);
-        await BasePage.completeFields(await this.passwordInput, password);
+        await BASE_PAGE.completeFiels(await this.usernameInput, username);
+        await BASE_PAGE.completeFields(await this.passwordInput, password);
       }
 
     async logInWithEnter(username, password){
@@ -29,7 +30,7 @@ class LoginPage {
     }
 
     async logInWithRememberMeChecked(username, password){
-        await BasePage.clickElement(this.rememberMe);
+        await BASE_PAGE.clickElement(this.rememberMe);
         await this.logInWithSubmitButton(username, password);
     }
 
