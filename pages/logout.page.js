@@ -1,6 +1,4 @@
-const PAGE_TIMEOUT = 10000;
-
-class LogoutPage {
+class LogoutPage extends BasePage {
     
     get profileIcon () { return $('[class="user-avatar rounded-circle"]'); }
     get logoutButton () { return $('[href="/bank/logout"]'); }

@@ -14,5 +14,9 @@ async clickElement (element) {
         await element.waitForClickable({ timeout: PAGE_TIMEOUT });
         await element.click();
     }
+
+    async pressEnterKey (element) {
+        await element.keys('Enter');
+    }
 }
-export default new BasePage();
+export default BasePage();

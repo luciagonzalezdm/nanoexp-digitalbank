@@ -1,5 +1,5 @@
-import LOGIN_PAGE from '../pages/login.page';
-const LOGIN_PAGE = LOGIN_PAGE;
+import LoginPage from '../pages/login.page';
+const LOGIN_PAGE = LoginPage;
 
 const VALID_USERNAME = 'jsmith@demo.io'
 const VALID_PASSWORD = 'Demo123!'
@@ -46,7 +46,7 @@ describe('Login Test Cases', () => {
       await LOGIN_PAGE.logInWithRememberMeChecked(VALID_USERNAME, VALID_PASSWORD);
       await browser.newWindow('login');
   
-      expect(LOGIN_PAGE.usernameInput).toHaveText('jsmith@demo.io');
+      expect(LOGIN_PAGE.usernameInput).toHaveText(VALID_USERNAME);
     }); 
 
  }); 
