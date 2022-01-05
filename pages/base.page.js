@@ -15,8 +15,8 @@ async clickElement (element) {
         await element.click();
     }
 
-    async pressEnterKey (element) {
+async pressEnterKey (element) {
         await element.keys('Enter');
     }
 }
-export default BasePage();
+export default BasePage;

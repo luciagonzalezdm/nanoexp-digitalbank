@@ -1,5 +1,4 @@
 import BasePage from "./base.page";
-const PAGE_TIMEOUT = 10000;
 
 class LoginPage extends BasePage {
     

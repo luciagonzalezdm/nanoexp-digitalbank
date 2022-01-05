@@ -1,8 +1,6 @@
-const PAGE_TIMEOUT = 10000;
-
-class HomePage {
+class HomePage extends BasePage{
        
-        get welcomeMsg () { return $('[class="page-title"]'); }
+get welcomeMsg () { return $('[class="page-title"]'); }
 
 }
 export default new HomePage();

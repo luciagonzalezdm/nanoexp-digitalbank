@@ -1,3 +1,5 @@
+import BasePage from './base.page'
+
 class LogoutPage extends BasePage {
     
     get profileIcon () { return $('[class="user-avatar rounded-circle"]'); }
