@@ -9,7 +9,7 @@ const VALID_PASSWORD = 'Demo123!';
 
 describe('Logout Test Cases', () => {
   beforeEach(async function  () {
-    await LogoutPage.navigateToPage(); 
+    await LoginPage.navigateToPage(); 
     await LoginPage.logInWithSubmitButton(VALID_USERNAME, VALID_PASSWORD);
   });
 
